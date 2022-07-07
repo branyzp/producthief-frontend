@@ -1,11 +1,11 @@
 import React from 'react';
 
-const OpenToDo = () => {
+const Tells = () => {
     return (
         <div>
-            
+            Write your tells here
         </div>
     );
 };
 
-export default OpenToDo;
+export default Tells;

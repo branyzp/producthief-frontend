@@ -7,21 +7,24 @@ import ToDoCard from '../components/ToDoCard';
 
 const local = 'http://localhost:8000/api/todos/'
 const heroku = 'https://producthief-backend.herokuapp.com/api/todos/'
-const api = local;
+const todoapi = local;
+
+const motivationapi_url = 'https://zenquotes.io/api/quotes/'
 
 interface todo {
-    id: number,
-    title: string,
-    description: string,
-    completed: boolean
+    id: number;
+    title: string;
+    description: string;
+    completed: boolean;
 }
-
 
     
 const ToDo: React.FC = () => {
     const [newTodoTitle, setNewTodoTitle] = useState<string>('')
     const [newTodoDesc,setNewTodoDesc] = useState<string>('')
     const [todos, setTodos] = useState<todo[]>([])
+    const [quotes,setQuotes] = useState<string>('')
+    
     
     console.log('newtodotitle:',newTodoTitle)
     console.log('newtododesc',newTodoDesc)
@@ -39,23 +42,24 @@ const ToDo: React.FC = () => {
         const fetchData = async()=>{
             await axios({
             method: 'get',
-            url:api
+            url:todoapi
         }).then(res => setTodos(res.data))
-        .catch(err => console.log(err))
+                .catch(err => console.log(err))
         }
-        fetchData(); 
+        
+        
+        fetchData();
+        
     }, [])
     
-    // const addTodo = async () => {
-    //     await axios.post('/')
-    // }
+    
     const handleAdd = () => {
 
         //update state of todos
         if (newTodoTitle && newTodoDesc) {
             
         //send the POST request to update the backend
-            axios.post(api, {
+            axios.post(todoapi, {
                 title: newTodoTitle,
                 description: newTodoDesc,
                 completed: false
@@ -69,9 +73,12 @@ const ToDo: React.FC = () => {
     }
 
     console.log(todos)
+    console.log(quotes)
 
     return (
         <div>
+            <h1> Good Afternoon, Brandon.</h1>
+            <h2>Quote</h2>
             <table className='todoTable' >
                  <tbody>
                      <tr>
@@ -81,7 +88,7 @@ const ToDo: React.FC = () => {
                      </tr>
                     <tr>  
                          <td>
-                               <textarea id='inputbox2' className='input_box' placeholder='type your todo description here' rows={5} cols={30} onChange={(e)=>setNewTodoDesc(e.target.value)}></textarea>
+                               <textarea id='inputbox2' className='input_box' placeholder='what can help you achieve this focus?' rows={5} cols={30} onChange={(e)=>setNewTodoDesc(e.target.value)}></textarea>
                          </td>
                     </tr>
                 </tbody>
@@ -91,7 +98,7 @@ const ToDo: React.FC = () => {
                    <div className='ToDoCardContainer'>
                     {todos.map((todo, index) => {
                         return (
-                            <ToDoCard key={index} id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} todos={todos} setTodos={setTodos} api={api} />
+                            <ToDoCard key={index} id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} todos={todos} setTodos={setTodos} todoapi={todoapi} />
                         )
                     })}
                </div>

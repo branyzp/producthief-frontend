@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 
-const pages = ['ToDo', 'Pomodoro', 'Blog'];
+const pages = ['ToDo', 'Pomodoro', 'Blog','Tells'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {

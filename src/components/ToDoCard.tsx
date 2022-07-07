@@ -22,16 +22,17 @@
 
 // export default ToDoCard;
 
-import * as React from 'react';
+import {useState} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea } from '@mui/material';
+import { Button, CardActionArea, ThemeProvider, createTheme} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import axios from 'axios';
+
 
 interface todo {
     id: number,
@@ -47,42 +48,86 @@ interface Props{
   completed: boolean;
   todos: todo[];
   setTodos: React.Dispatch<React.SetStateAction<todo[]>>;
-  api: string;
+  todoapi: string;
 }
 
 
-export default function ToDoCard({ title, description, completed, id, todos, setTodos, api }: Props) {
+
+
+export default function ToDoCard({ title, description, completed, id, todos, setTodos, todoapi }: Props) {
+  const [edit, setEdit] = useState<boolean>(false);
+  const [editTitle, setEditTitle] = useState<string>(title);
+  const [editDesc, setEditDesc] = useState<string>(description);
   
 
+  const complimentArr = ['Nice.', 'Great work!', 'Amazing!', 'Well done!', 'Keep it up.', 'Wow. That was fast.']
+  const randomNum = Math.floor(Math.random() * complimentArr.length)
+  const randomCompliment = complimentArr[randomNum]
 
   const handleDelete = (id: number) => {
-    axios.delete(api + id)
+    axios.delete(todoapi + id)
     setTodos(todos.filter(todo=>todo.id !== id))
   
 }
   
   const handleEdit = (id: number) => {
-    axios.put(api + id)
+   
+    
+    axios.put(todoapi + id + '/', {
+                title: editTitle,
+                description: editDesc,
+    })
+    console.log('Edit!')
+    
 
 }
 
   const handleCompleted = (id: number) => {
-  setTodos(todos.map(todo=>todo.id === id?{...todo,completed:!todo.completed}:todo))
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+
+    if (completed) {
+       axios.put(todoapi + id + '/', {
+      completed: 'true'
+       })
+    } else {
+      axios.put(todoapi + id + '/',{
+        completed: 'false'
+      }) 
+    }
+
   
-}
+  }
+  
+ console.log(completed)
   
 
   return (
-    <Card className='ToDoCard' sx={{ maxWidth: 500 , maxHeight: 345}}>
+    <Card className='ToDoCard' sx={{ maxWidth: 500 , maxHeight: 345, borderRadius: '25px',}}>
       {/* <CardActionArea> */}
         <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {completed ? <s>{title}</s> : <b>{title}</b>}
+          {edit && !completed ? (
+          <input value={editTitle} onChange={(e)=>setEditTitle(e.target.value)} />
+          ): (
+              completed ? <h1><s>{title}</s></h1> : <h1><b>{title}</b></h1>
+          )
+        }
+          
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-          {completed ? <>Way to go!</> : <>{ description }</>}
+        <Typography variant="body2" color="text.secondary">
+          
+          {completed ? <h2>You're done! Yay!</h2> : <h2>{ description }</h2>}
         </Typography>
-        <Button onClick={()=>handleEdit(id)}><EditIcon/></Button>
+        <Button onClick={() => {
+          if (!edit && !completed) {
+            setEdit(!edit)
+            console.log('edit', edit)
+          } else {
+            setEdit(!edit)
+            console.log('close edit', edit)
+            handleEdit(id)
+          }
+        }}><EditIcon/></Button>
         <Button onClick={()=> handleDelete(id)}><DeleteIcon /></Button>
         <Button onClick={()=>handleCompleted(id)}><CheckIcon/></Button>
           
