@@ -36,7 +36,7 @@ export default function ToDoPage({todoapi}:Props) {
 
     return (
         <div>
-            <h1>Focus:
+            <h1>Focus: {}
             </h1>
         </div>
     );

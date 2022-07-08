@@ -8,7 +8,7 @@ import ToDoPage from './pages/ToDoPage';
 
 const local = 'http://localhost:8000/api/todos/'
 const heroku = 'https://producthief-backend.herokuapp.com/api/todos/'
-const todoapi = local;
+const todoapi = heroku;
 
 function App() {
   return (

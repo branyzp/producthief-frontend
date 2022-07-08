@@ -6,9 +6,9 @@ import { Button } from '@mui/material';
 import ToDoCard from '../components/ToDoCard';
 import { Link } from 'react-router-dom';
 
-const local = 'http://localhost:8000/api/todos/'
-const heroku = 'https://producthief-backend.herokuapp.com/api/todos/'
-const todoapi = local;
+// const local = 'http://localhost:8000/api/todos/'
+// const heroku = 'https://producthief-backend.herokuapp.com/api/todos/'
+// const todoapi = local;
 
 const motivationapi_url = 'https://zenquotes.io/api/quotes/'
 

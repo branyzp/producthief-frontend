@@ -114,7 +114,7 @@ export default function ToDoCard({ title, description, completed, id, todos, set
         <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {edit && !completed ? (
-          <input value={editTitle} onChange={(e)=>setEditTitle(e.target.value)} />
+          <input className='editInput' value={editTitle} onChange={(e)=>setEditTitle(e.target.value)} />
           ): (
               completed ? <h1><s>{title}</s></h1> : <h1><b>{title}</b></h1>
           )
@@ -124,7 +124,7 @@ export default function ToDoCard({ title, description, completed, id, todos, set
         <Typography variant="body2" color="text.secondary">
           
           {edit && !completed ? (
-            <input value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
+            <input className='editInput' value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
           ) : (
               completed ? <h2>You're done! Yay!</h2> : <h2>{ description }</h2>
           )
@@ -141,10 +141,15 @@ export default function ToDoCard({ title, description, completed, id, todos, set
             console.log('close edit', edit)
             handleEdit(id)
           }
-        }}><EditIcon/></Button>
-        <Button onClick={() => handleDelete(id)}><DeleteIcon /></Button>
+        }}><EditIcon /></Button>
+        
+        {edit ? (<h1>Editing '{title}' ...</h1>) : (<><Button onClick={() => handleDelete(id)}><DeleteIcon /></Button>
         <Link to={`${id}`} ><Button><AccessAlarmIcon/></Button></Link>
-        <Button onClick={() => handleCompleted(id)}><CheckIcon /></Button>
+        <Button onClick={() => handleCompleted(id)}><CheckIcon /></Button></>)}
+      
+        {/* <Button onClick={() => handleDelete(id)}><DeleteIcon /></Button>
+        <Link to={`${id}`} ><Button><AccessAlarmIcon/></Button></Link>
+        <Button onClick={() => handleCompleted(id)}><CheckIcon /></Button> */}
         
           
       </CardContent>
