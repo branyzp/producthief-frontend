@@ -4,6 +4,7 @@ import axios from 'axios';
 import { style } from '@mui/system';
 import { Button } from '@mui/material';
 import ToDoCard from '../components/ToDoCard';
+import { Link } from 'react-router-dom';
 
 const local = 'http://localhost:8000/api/todos/'
 const heroku = 'https://producthief-backend.herokuapp.com/api/todos/'
@@ -11,6 +12,9 @@ const todoapi = local;
 
 const motivationapi_url = 'https://zenquotes.io/api/quotes/'
 
+interface Props{
+    todoapi: string;
+}
 interface todo {
     id: number;
     title: string;
@@ -19,7 +23,7 @@ interface todo {
 }
 
     
-const ToDo: React.FC = () => {
+export default function ToDo ({todoapi}:Props) {
     const [newTodoTitle, setNewTodoTitle] = useState<string>('')
     const [newTodoDesc,setNewTodoDesc] = useState<string>('')
     const [todos, setTodos] = useState<todo[]>([])
@@ -76,9 +80,9 @@ const ToDo: React.FC = () => {
     console.log(quotes)
 
     return (
-        <div>
-            <h1> Good Afternoon, Brandon.</h1>
-            <h2>Quote</h2>
+        <div className='ToDoBG'>
+            <h1 className='pagetext'> Good Afternoon, Brandon.</h1>
+            <h2 className='pagetext'>Yes, you can.</h2>
             <table className='todoTable' >
                  <tbody>
                      <tr>
@@ -88,17 +92,31 @@ const ToDo: React.FC = () => {
                      </tr>
                     <tr>  
                          <td>
-                               <textarea id='inputbox2' className='input_box' placeholder='what can help you achieve this focus?' rows={5} cols={30} onChange={(e)=>setNewTodoDesc(e.target.value)}></textarea>
+                               <textarea id='inputbox2' className='input_box' placeholder='what is included in this focus?' rows={2} cols={20} onChange={(e)=>setNewTodoDesc(e.target.value)}></textarea>
                          </td>
                     </tr>
                 </tbody>
             </table>
-                    <Button onClick={handleAdd}>Add</Button>
+            
+                    <Button sx={{
+								':hover': {
+									bgcolor: 'black',
+									color: 'white',
+								},
+								backgroundColor: 'white',
+                color: 'black',
+                                fontFamily: 'Oxygen'
+                                
+                                
+							}} variant='contained' className='input_submit' onClick={handleAdd}>Add Focus</Button>
             
                    <div className='ToDoCardContainer'>
                     {todos.map((todo, index) => {
                         return (
-                            <ToDoCard key={index} id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} todos={todos} setTodos={setTodos} todoapi={todoapi} />
+                            
+                                <ToDoCard key={index} id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} todos={todos} setTodos={setTodos} todoapi={todoapi} />
+                               
+                        
                         )
                     })}
                </div>
@@ -106,4 +124,3 @@ const ToDo: React.FC = () => {
     );
 };
 
-export default ToDo;

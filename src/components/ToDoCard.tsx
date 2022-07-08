@@ -31,7 +31,9 @@ import { Button, CardActionArea, ThemeProvider, createTheme} from '@mui/material
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 interface todo {
@@ -71,12 +73,14 @@ export default function ToDoCard({ title, description, completed, id, todos, set
 }
   
   const handleEdit = (id: number) => {
-   
-    
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, title: editTitle,description: editDesc } : todo))
+
     axios.put(todoapi + id + '/', {
                 title: editTitle,
                 description: editDesc,
     })
+    
+   
     console.log('Edit!')
     
 
@@ -86,19 +90,22 @@ export default function ToDoCard({ title, description, completed, id, todos, set
     setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo))
 
     if (completed) {
-       axios.put(todoapi + id + '/', {
-      completed: 'true'
+      axios.put(todoapi + id + '/', {
+        title: editTitle,
+        description: editDesc,
+        completed: false
        })
     } else {
-      axios.put(todoapi + id + '/',{
-        completed: 'false'
+      axios.put(todoapi + id + '/', {
+        title: editTitle,
+        description: editDesc,
+        completed: true
       }) 
     }
 
   
   }
   
- console.log(completed)
   
 
   return (
@@ -116,7 +123,14 @@ export default function ToDoCard({ title, description, completed, id, todos, set
           </Typography>
         <Typography variant="body2" color="text.secondary">
           
-          {completed ? <h2>You're done! Yay!</h2> : <h2>{ description }</h2>}
+          {edit && !completed ? (
+            <input value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
+          ) : (
+              completed ? <h2>You're done! Yay!</h2> : <h2>{ description }</h2>
+          )
+        
+        
+        }
         </Typography>
         <Button onClick={() => {
           if (!edit && !completed) {
@@ -128,8 +142,10 @@ export default function ToDoCard({ title, description, completed, id, todos, set
             handleEdit(id)
           }
         }}><EditIcon/></Button>
-        <Button onClick={()=> handleDelete(id)}><DeleteIcon /></Button>
-        <Button onClick={()=>handleCompleted(id)}><CheckIcon/></Button>
+        <Button onClick={() => handleDelete(id)}><DeleteIcon /></Button>
+        <Link to={`${id}`} ><Button><AccessAlarmIcon/></Button></Link>
+        <Button onClick={() => handleCompleted(id)}><CheckIcon /></Button>
+        
           
       </CardContent>
       

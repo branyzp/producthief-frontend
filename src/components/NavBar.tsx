@@ -119,11 +119,13 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
+      
                 key={page}
                 onClick={handleCloseNavMenu}
                 component={Link}
                 to={`${page}` }
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Oxygen' }}
+                
               >
                 <strong>{page}</strong>
               </Button>
