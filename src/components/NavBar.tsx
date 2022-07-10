@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 
-const pages = ['ToDo', 'Pomodoro', 'Blog','Tells'];
+const pages = ['ToDo', 'Blog','Tells'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
@@ -37,7 +37,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar style={{ background: '#2E3B55' }}position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to='/'>
@@ -133,6 +133,10 @@ const NavBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            <Button
+              component={Link}
+              to={'/login'}
+            ></Button>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

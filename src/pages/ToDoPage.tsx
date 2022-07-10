@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Params, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { title } from 'process';
+import Tooltip from '@mui/material/Tooltip';
+import { Button } from '@mui/material';
 
 interface Props{
     todoapi: string;
@@ -16,7 +17,7 @@ interface todo {
 }
 
 export default function ToDoPage({todoapi}:Props) {
-    const [todo,setTodo] = useState<any>()
+    const [todo,setTodo] = useState<any>([])
     const { id } = useParams();
 
     useEffect(() => {
@@ -36,8 +37,31 @@ export default function ToDoPage({todoapi}:Props) {
 
     return (
         <div>
-            <h1>Focus: {}
-            </h1>
+            <h1>Your Focus</h1>
+            <h2>Title: <span className='pagetext' >{todo.title}</span>
+            </h2>
+            <h2>Description: <span className='pagetext'>{todo.description}</span> </h2>
+
+            
+            <Button
+                component={Link}
+                to={'/todo'}
+                sx={{
+								':hover': {
+									bgcolor: 'black',
+									color: 'white',
+								},
+								backgroundColor: 'white',
+                                color: 'black',
+                                fontFamily: 'Oxygen'
+                                
+                                
+							}} variant='contained'>Back to Focus page</Button>
+            
+
+            <section>
+                
+            </section>
         </div>
     );
 };

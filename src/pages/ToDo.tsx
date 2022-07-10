@@ -1,8 +1,8 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { style } from '@mui/system';
-import { Button } from '@mui/material';
+import { Button, Pagination } from '@mui/material';
 import ToDoCard from '../components/ToDoCard';
 import { Link } from 'react-router-dom';
 
@@ -22,16 +22,33 @@ interface todo {
     completed: boolean;
 }
 
+
     
 export default function ToDo ({todoapi}:Props) {
     const [newTodoTitle, setNewTodoTitle] = useState<string>('')
     const [newTodoDesc,setNewTodoDesc] = useState<string>('')
     const [todos, setTodos] = useState<todo[]>([])
-    const [quotes,setQuotes] = useState<string>('')
+    const [quotes, setQuotes] = useState<string>('')
+    const [compliment, setCompliment] = useState<string>('Yes, you can.')
+    const [time, setTime] = useState(new Date());
+    const [greeting, setGreeting] = useState<string>('Hello')    
     
     
-    console.log('newtodotitle:',newTodoTitle)
-    console.log('newtododesc',newTodoDesc)
+   
+    
+    
+   
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            await axios({
+                method: 'get',
+                url:todoapi
+            }).then(res => setTodos(res.data)).catch(err => console.log(err))
+        }
+        fetchData();
+    },[])
+   
     
     
     // const getTodos = () => {
@@ -42,22 +59,30 @@ export default function ToDo ({todoapi}:Props) {
     //     .catch(err => console.log(err))
     // }
 
-    useEffect(() => {
-        const fetchData = async()=>{
-            await axios({
-            method: 'get',
-            url:todoapi
-        }).then(res => setTodos(res.data))
-                .catch(err => console.log(err))
-        }
-        
-        
-        fetchData();
-        
-    }, [])
     
+
+     useEffect(() => {
+    const interval = setInterval(() => setTime(new Date()), 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+    
+    useEffect(() => {
+        const currentHour = time.getHours()
+        if (currentHour < 12) {
+            setGreeting('Good Morning')
+        } else if (currentHour < 18) {
+            setGreeting('Good Afternoon')
+        } else {
+            setGreeting('Good Evening')
+        }
+    }
+    ,[])
     
     const handleAdd = () => {
+        
 
         //update state of todos
         if (newTodoTitle && newTodoDesc) {
@@ -68,26 +93,39 @@ export default function ToDo ({todoapi}:Props) {
                 description: newTodoDesc,
                 completed: false
             }).then(res => setTodos([...todos,res.data]))
-            .catch(err=>console.log(err))
+                .catch(err => console.log(err))
+            
+            
             
         } else {
             alert('Please fill in both "Title" and "Description"')
         }
-
+        
     }
 
     console.log(todos)
-    console.log(quotes)
+  
 
     return (
-        <div className='ToDoBG'>
-            <h1 className='pagetext'> Good Afternoon, Brandon.</h1>
-            <h2 className='pagetext'>Yes, you can.</h2>
+        <div>
+            <div id='clock'>
+                    <h1 className='pagetext'>{time.toDateString()}</h1>
+                    <h1 className='pagetext'>{time.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</h1>
+                    
+                </div>
+            <div className='pagetextdiv'>
+                
+
+                <h1 className='pagetext'> {greeting}, Brandon.</h1>
+               
+                
+            </div>
+            
             <table className='todoTable' >
                  <tbody>
                      <tr>
                          <td>
-                              <input id='inputbox1' className='input_box' placeholder='what is your main focus today?' name='title' size={37} onChange={(e)=>setNewTodoTitle(e.target.value)}></input>
+                              <input id='inputbox1' className='input_box' placeholder='what is your main focus today?' name='title' size={37} onChange={(e)=>setNewTodoTitle(e.target.value)}/>
                          </td>
                      </tr>
                     <tr>  
@@ -108,18 +146,27 @@ export default function ToDo ({todoapi}:Props) {
                                 fontFamily: 'Oxygen'
                                 
                                 
-							}} variant='contained' className='input_submit' onClick={handleAdd}>Add Focus</Button>
-            
-                   <div className='ToDoCardContainer'>
+            }} variant='contained' className='input_submit' onClick={() => {
+                handleAdd()
+                const todocontainer = document.getElementById('ToDoCompliment')!
+                setTimeout(() => {
+                todocontainer.scrollIntoView({behavior:'smooth'});
+			}, 1000);
+            }
+            }>Add Focus</Button>
+
+            {todos[0] && <div id='ToDoCardContainer' className='ToDoCardContainer'>
+                <h1 id='ToDoCompliment' className='pagetext'>{compliment}</h1>
                     {todos.map((todo, index) => {
                         return (
                             
-                                <ToDoCard key={index} id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} todos={todos} setTodos={setTodos} todoapi={todoapi} />
-                               
+                            <ToDoCard key={index} id={todo.id} title={todo.title} description={todo.description} completed={todo.completed} todos={todos} setTodos={setTodos} todoapi={todoapi} setCompliment={setCompliment} />
+                          
                         
                         )
                     })}
-               </div>
+               </div>}
+                   
         </div>
     );
 };
