@@ -127,16 +127,22 @@ const NavBar = () => {
                 sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'Oxygen' }}
                 
               >
-                <strong>{page}</strong>
+                {page}
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Button
+            <Button sx={{ my: 2, color: 'white', display: 'inline-block', fontFamily: 'Oxygen' }}
               component={Link}
               to={'/login'}
-            ></Button>
+            >Login</Button>
+
+            <Button sx={{ my: 2, color: 'white', display: 'inline-block', fontFamily: 'Oxygen' }}
+              component={Link}
+              to={'/register'}
+            >Register</Button>
+
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

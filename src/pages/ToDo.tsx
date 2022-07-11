@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { style } from '@mui/system';
-import { Button, Pagination } from '@mui/material';
+import { Button, Pagination, TextField } from '@mui/material';
 import ToDoCard from '../components/ToDoCard';
 import { Link } from 'react-router-dom';
 
@@ -124,12 +124,26 @@ export default function ToDo ({todoapi}:Props) {
             <table className='todoTable' >
                  <tbody>
                      <tr>
-                         <td>
+                        <td>
+                            {/* <TextField
+                                label='focus title'
+                                required
+                                style={{
+                                backgroundColor: "white",
+                                outline: 'None'
+                                      }} className='input_box' placeholder='what is your main focus today?' size={"medium"} onChange={(e)=>setNewTodoTitle(e.target.value)} /> */}
                               <input id='inputbox1' className='input_box' placeholder='what is your main focus today?' name='title' size={37} onChange={(e)=>setNewTodoTitle(e.target.value)}/>
                          </td>
                      </tr>
                     <tr>  
-                         <td>
+                        <td>
+                            {/* <TextField
+                                label='focus description'
+                                required
+                                style={{
+                                backgroundColor: "white",
+                                outline: 'None'
+                                      }} className='input_box' placeholder='what is included in this focus?' onChange={(e)=>setNewTodoDesc(e.target.value)} /> */}
                                <textarea id='inputbox2' className='input_box' placeholder='what is included in this focus?' rows={2} cols={20} onChange={(e)=>setNewTodoDesc(e.target.value)}></textarea>
                          </td>
                     </tr>

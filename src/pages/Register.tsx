@@ -4,7 +4,10 @@ import React from 'react';
 const Register = () => {
     return (
         <div>
-            <TextField></TextField>
+            <form>
+                  <TextField required label='Username' variant='outlined'></TextField>
+            </form>
+          
             
         </div>
     );
