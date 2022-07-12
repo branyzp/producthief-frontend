@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Tooltip from '@mui/material/Tooltip';
 import { Button } from '@mui/material';
+import Timer from '../components/Timer';
 
 interface Props{
     todoapi: string;
@@ -36,12 +37,12 @@ export default function ToDoPage({todoapi}:Props) {
     console.log(todo)
 
     return (
-        <div>
+        <div >
             <h1>Your Focus</h1>
             <h2>Title: <span className='pagetext' >{todo.title}</span>
             </h2>
             <h2>Description: <span className='pagetext'>{todo.description}</span> </h2>
-
+           
             
             <Button
                 component={Link}
@@ -60,7 +61,7 @@ export default function ToDoPage({todoapi}:Props) {
             
 
             <section>
-                
+                 <Timer/>
             </section>
         </div>
     );

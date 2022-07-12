@@ -1,6 +1,7 @@
-import { Link } from '@mui/icons-material';
+
 import { Button } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Index = () => {
@@ -16,11 +17,11 @@ const Index = () => {
                     It's time to steal your life back.
                 </h1>
 
-                <br /> <br />
                 
-                <Link to={'/todo'} style={{ textDecoration: 'none' }}>
                 
-            </Link>
+                <Link to={'/todo'}>Find Your Focus</Link> <br /> <br />
+                <Link to={'/Blog'}>Blog</Link><br /> <br />
+                <Link to={'/Tells'}>Tell yourself something you'd like to achieve</Link><br /> <br />
 
                 
 

@@ -1,4 +1,5 @@
-import { Button, TextField } from '@mui/material';
+import { CheckBox } from '@mui/icons-material';
+import { Button, Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +15,14 @@ const Login = () => {
                 </div>
                 <div className='formContainer'>
                     {/* <label htmlFor='password'>Password</label><br/> */}
-                    <TextField  sx={{mt:3}} label='Password' id='password' required variant='outlined'></TextField>
+                    <TextField sx={{ mt: 3 }} label='Password' id='password' required variant='outlined'></TextField>
+                </div>
+                <div className='formContainer'>
+                    
+                    
+                        <FormControlLabel control={<Checkbox />} label="Remember me" />
+                        
+                    
                 </div>
                 
                 <Button
@@ -35,6 +43,7 @@ const Login = () => {
                                 
                                 
                     }} variant='contained'>Login</Button>
+                
                 <br/>
                 <br/>
                 <Link to={'/register'} > New? Register here</Link>

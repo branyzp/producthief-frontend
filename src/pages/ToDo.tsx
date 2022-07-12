@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { style } from '@mui/system';
-import { Button, Pagination, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import ToDoCard from '../components/ToDoCard';
 import { Link } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ export default function ToDo ({todoapi}:Props) {
     const [newTodoTitle, setNewTodoTitle] = useState<string>('')
     const [newTodoDesc,setNewTodoDesc] = useState<string>('')
     const [todos, setTodos] = useState<todo[]>([])
-    const [quotes, setQuotes] = useState<quote>({content: '' , author: ''})
+    const [quotes, setQuotes] = useState<quote>({ content: '' , author: ''})
     const [compliment, setCompliment] = useState<string>('Yes, you can.')
     const [time, setTime] = useState(new Date());
     const [greeting, setGreeting] = useState<string>('Hello')    
@@ -123,6 +123,13 @@ export default function ToDo ({todoapi}:Props) {
         
     }
 
+    const handleScroll = () => {
+        setTimeout(() => {
+            const todocontainer = document.getElementById('ToDoCompliment')!
+                todocontainer.scrollIntoView({behavior:'smooth'});
+			}, 1000);
+    }
+
     
 
     console.log(todos)
@@ -190,10 +197,8 @@ export default function ToDo ({todoapi}:Props) {
                                 
             }} variant='contained' className='input_submit' onClick={() => {
                 handleAdd()
-                const todocontainer = document.getElementById('ToDoCompliment')!
-                setTimeout(() => {
-                todocontainer.scrollIntoView({behavior:'smooth'});
-			}, 1000);
+                handleScroll()
+           
             }
             }>Add Focus</Button>
 
