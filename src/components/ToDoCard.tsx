@@ -127,7 +127,7 @@ export default function ToDoCard({ title, description, completed, id, todos, set
         <Typography variant="body2" color="text.secondary">
           
           {edit && !completed ? (
-            <input className='editInput' value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
+            <textarea className='editInput' value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
           ) : (
               completed ? <h2>You're done! Yay!</h2> : <h2>{ description }</h2>
           )

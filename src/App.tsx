@@ -1,9 +1,9 @@
-import { Login } from '@mui/icons-material';
 import React from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import Index from './pages/Index';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import Tells from './pages/Tells';
 import ToDo from './pages/ToDo';

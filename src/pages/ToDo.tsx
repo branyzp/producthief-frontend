@@ -6,11 +6,12 @@ import { Button, Pagination, TextField } from '@mui/material';
 import ToDoCard from '../components/ToDoCard';
 import { Link } from 'react-router-dom';
 
+
 // const local = 'http://localhost:8000/api/todos/'
 // const heroku = 'https://producthief-backend.herokuapp.com/api/todos/'
 // const todoapi = local;
 
-const motivationapi_url = 'https://zenquotes.io/api/quotes/'
+const quoteURL = 'https://quotable.io/random'
 
 interface Props{
     todoapi: string;
@@ -22,13 +23,24 @@ interface todo {
     completed: boolean;
 }
 
+interface quote{
+    // _id: string;
+    content: string;
+    author: string;
+    // tags: string[];
+    // authorSlug: string;
+    // length: number;
+    // dateAdded: string;
+    // dateModified: string;
+}
+
 
     
 export default function ToDo ({todoapi}:Props) {
     const [newTodoTitle, setNewTodoTitle] = useState<string>('')
     const [newTodoDesc,setNewTodoDesc] = useState<string>('')
     const [todos, setTodos] = useState<todo[]>([])
-    const [quotes, setQuotes] = useState<string>('')
+    const [quotes, setQuotes] = useState<quote>({content: '' , author: ''})
     const [compliment, setCompliment] = useState<string>('Yes, you can.')
     const [time, setTime] = useState(new Date());
     const [greeting, setGreeting] = useState<string>('Hello')    
@@ -79,8 +91,16 @@ export default function ToDo ({todoapi}:Props) {
             setGreeting('Good Evening')
         }
     }
+        , [])
+    
+    
+    useEffect(() => {
+        axios.get(quoteURL).then(res=> setQuotes(res.data)).catch(err=>console.log(err))
+    }
     ,[])
     
+    console.log(quotes)
+
     const handleAdd = () => {
         
 
@@ -103,6 +123,8 @@ export default function ToDo ({todoapi}:Props) {
         
     }
 
+    
+
     console.log(todos)
   
 
@@ -115,8 +137,14 @@ export default function ToDo ({todoapi}:Props) {
                 </div>
             <div className='pagetextdiv'>
                 
+                
 
-                <h1 className='pagetext'> {greeting}, Brandon.</h1>
+                <h1 className='pagetext'> {greeting}, Brandon.</h1> 
+                {quotes && (
+                <><p className='pagetext'>"{quotes.content}"</p>
+                <p className='pagetext'>-{quotes.author}</p></>)}
+                
+                
                
                 
             </div>

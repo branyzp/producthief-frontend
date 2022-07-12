@@ -69,7 +69,7 @@ body{
   box-shadow: inset 0 0 5px black; */
   
   border-radius: 50px;
-  padding: 20px 30px;
+  padding: 10px 10px;
   font-size: 15px;
   border: none;
   transition: 0.2s;
@@ -93,9 +93,11 @@ body{
   margin-bottom: 20px;
   height: 300px;
   width: 300px;
+  width: fit-content;
+  block-size: fit-content;
 }
 
-h1, h2, input, textarea{
+h1, h2, input, textarea, p{
   font-family: 'Dosis', sans-serif;
 }
 
@@ -118,13 +120,11 @@ h1, h2, input, textarea{
   
   font-family: 'Oxygen', sans-serif;
   color: rgb(105, 105, 105);
-  
   animation: fadeIn 2s;
 }
 
 .pagetextdiv{
-  
-  
+  text-align: center;
   width: 100%;
 
 }
@@ -140,6 +140,8 @@ h1, h2, input, textarea{
   background-color: rgb(244, 229, 234);
 
 }
+
+
 
 @keyframes fadeIn {
   0% {
@@ -163,3 +165,8 @@ h1, h2, input, textarea{
   width: 50%;
   height: 50%;
 }
+
+.formContainer{
+  
+}
+
