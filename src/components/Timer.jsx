@@ -1,6 +1,10 @@
 import { Button } from '@mui/material';
 import React, { useContext, useEffect, useRef } from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import {
+	CircularProgressbar,
+	buildStyles,
+	CircularProgressbarWithChildren,
+} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
@@ -18,6 +22,10 @@ const Timer = () => {
 	const secondsLeftRef = useRef(secondsLeft);
 	const isPausedRef = useRef(isPaused);
 	const modeRef = useRef(mode);
+	const audioRef = useRef();
+
+	const bellSoundUrl =
+		'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3';
 
 	function tick() {
 		secondsLeftRef.current--;
@@ -32,6 +40,7 @@ const Timer = () => {
 		// initTimer();
 
 		function switchMode() {
+			audioRef.current.play();
 			const nextMode = modeRef.current === 'work' ? 'break' : 'work';
 			const nextSeconds =
 				nextMode === 'work'
@@ -82,21 +91,48 @@ const Timer = () => {
 		seconds = '0' + seconds;
 	}
 
+	// const timerLabel = `${mode} session - ${minutes}:${seconds}`;
+	// document.title = timerLabel;
+
 	console.log('total', totalSeconds);
 	console.log('secondsleft', secondsLeft);
 	console.log('percentage', percentage);
 	console.log('mode', mode);
 
+	if (isPaused && secondsLeft === totalSeconds) {
+		document.title = 'Producthief';
+	} else if (isPaused) {
+		document.title = 'timer paused';
+	} else {
+		const timerLabel = `${mode} session - ${minutes}:${seconds}`;
+		document.title = timerLabel;
+	}
+
 	return (
 		<div className="timerdiv">
-			<CircularProgressbar
+			{/* <CircularProgressbar
 				value={percentage}
 				text={minutes + ':' + seconds}
 				strokeWidth={5}
 				styles={buildStyles({
 					strokeLinecap: 'butt',
 				})}
-			/>
+			/> */}
+
+			<CircularProgressbarWithChildren
+				value={percentage}
+				text={minutes + ':' + seconds}
+				strokeWidth={5}
+				styles={buildStyles({
+					strokeLinecap: 'butt',
+				})}
+			>
+				<div>
+					<h1 className="pagetext" style={{ marginTop: 200 }}>
+						{mode.tos} <br /> <br />
+					</h1>
+				</div>
+			</CircularProgressbarWithChildren>
 
 			<label>Work (mins): {settingsInfo.workMins}</label>
 			<ReactSlider
@@ -147,6 +183,7 @@ const Timer = () => {
 			>
 				<ReplayIcon />
 			</Button>
+			<audio id="beep" src={bellSoundUrl} ref={audioRef} preload="auto" />
 		</div>
 	);
 };

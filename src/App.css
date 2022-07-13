@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Oxygen:wght@300&display=swap');
 
 body{
-  background-color: rgb(175, 205, 231);
+  /* background-color: rgb(175, 205, 231); */
+  background-image: url('https://wallpaperaccess.com/full/4931.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh
 }
 
 .App {
@@ -99,6 +104,7 @@ body{
 
 h1, h2, input, textarea, p{
   font-family: 'Dosis', sans-serif;
+  font-weight: bolder;
 }
 
 
@@ -119,7 +125,7 @@ h1, h2, input, textarea, p{
 .pagetext{
   
   font-family: 'Oxygen', sans-serif;
-  color: rgb(100, 88, 88);
+  color: rgb(255, 255, 255);
   animation: fadeIn 2s;
 }
 
@@ -130,14 +136,15 @@ h1, h2, input, textarea, p{
 }
 
 .ToDoCardContainer{
-  margin-top: 30px;
+  background-image: url('https://images.unsplash.com/photo-1555505019-8c3f1c4aba5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
+  background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
-  border-radius: 50px;
-  
- 
-
-  background-color: rgb(244, 229, 234);
+  /* border-radius: 50px; */
+  background-color: rgb(0, 0, 0);
 
 }
 
@@ -190,3 +197,8 @@ h1, h2, input, textarea, p{
   display: inline-block;
 }
 
+
+.todopage{
+
+    
+}

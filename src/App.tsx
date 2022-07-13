@@ -12,8 +12,9 @@ import ToDoPage from './pages/ToDoPage';
 
 const local = 'http://localhost:8000/api/'
 const heroku = 'https://producthief-backend.herokuapp.com/api/'
-const todoapi = local + 'todos/'
-const tellsapi = local + 'tells/'
+const api = local //edit this to change local to heroku
+const todoapi = api + 'todos/'
+const tellsapi = api + 'tells/'
 
 
 

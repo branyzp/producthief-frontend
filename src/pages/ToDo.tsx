@@ -45,12 +45,6 @@ export default function ToDo ({todoapi}:Props) {
     const [time, setTime] = useState(new Date());
     const [greeting, setGreeting] = useState<string>('Hello')    
     
-    
-   
-    
-    
-   
-    
     useEffect(() => {
         const fetchData = async () => {
             await axios({
@@ -115,7 +109,7 @@ export default function ToDo ({todoapi}:Props) {
             }).then(res => setTodos([...todos,res.data]))
                 .catch(err => console.log(err))
             
-            
+             handleScroll()
             
         } else {
             alert('Please fill in both "Title" and "Description"')
@@ -127,7 +121,7 @@ export default function ToDo ({todoapi}:Props) {
         setTimeout(() => {
             const todocontainer = document.getElementById('ToDoCompliment')!
                 todocontainer.scrollIntoView({behavior:'smooth'});
-			}, 1000);
+			}, 500);
     }
 
     
@@ -136,10 +130,10 @@ export default function ToDo ({todoapi}:Props) {
   
 
     return (
-        <div>
+        <div className='todopage'>
             <div id='clock'>
-                    <h1 className='pagetext'>{time.toDateString()}</h1>
-                    <h1 className='pagetext'>{time.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</h1>
+                    <h1 style={{fontSize: 50}} className='pagetext'>{time.toDateString()}</h1>
+                    <h1 style={{fontSize: 200, marginBottom: -50, marginTop:-50}} className='pagetext'>{time.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</h1>
                     
                 </div>
             <div className='pagetextdiv'>
@@ -197,7 +191,7 @@ export default function ToDo ({todoapi}:Props) {
                                 
             }} variant='contained' className='input_submit' onClick={() => {
                 handleAdd()
-                handleScroll()
+               
            
             }
             }>Add Focus</Button>
