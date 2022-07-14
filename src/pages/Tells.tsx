@@ -33,19 +33,18 @@ const Tells = ({ tellsapi }: Props) => {
 
 	const handleAdd = () => {
 		//update state of todos
-		if (newGoal && newStep) {
+		if (newGoal) {
 			//send the POST request to update the backend
 			axios
 				.post(tellsapi, {
 					goal: newGoal,
-					steps: newStep,
 				})
 				.then((res) => setTell([...tell, res.data]))
 				.catch((err) => console.log(err));
 
 			//  handleScroll()
 		} else {
-			alert('Please fill in both "Goal" and "Steps"');
+			alert('Please fill in for "goal');
 		}
 	};
 
@@ -56,16 +55,15 @@ const Tells = ({ tellsapi }: Props) => {
 			<div className="newTellContainer">
 				<input
 					className="input_box"
-					placeholder="what is your goal?"
+					placeholder="what would you like to tell yourself?"
 					onChange={(e) => setNewGoal(e.target.value)}
 				/>{' '}
-				<br /> <br />
-				<input
+				{/* <textarea
 					className="input_box"
 					placeholder="what are the steps you are taking to achieve it?"
 					onChange={(e) => setNewStep(e.target.value)}
 				/>{' '}
-				<br /> <br />
+				<br /> <br /> */}
 				<Button
 					sx={{
 						':hover': {
@@ -75,6 +73,7 @@ const Tells = ({ tellsapi }: Props) => {
 						backgroundColor: 'white',
 						color: 'black',
 						fontFamily: 'Oxygen',
+						mt: 3,
 					}}
 					variant="contained"
 					className="input_submit"

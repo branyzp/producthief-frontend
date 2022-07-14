@@ -184,10 +184,7 @@ h1, h2, input, textarea, p{
 }
 
 .tellpage{
-  display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10%;
+  
 
  
 }
@@ -196,11 +193,9 @@ h1, h2, input, textarea, p{
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 50px;
-  width: 30%;
+  width: 50%;
   height: 50%;
- 
- 
-
+  margin: 0 auto;
 
 }
 

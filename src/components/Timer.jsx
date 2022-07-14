@@ -72,16 +72,6 @@ const Timer = () => {
 
 	console.log(settingsInfo);
 
-	// const totalSeconds =
-	// 	mode === 'work'
-	// 		? settingsInfo.workMinutes * 60
-	// 		: settingsInfo.breakMinutes * 60;
-	// const percentage = Math.round((secondsLeft / totalSeconds) * 100);
-
-	// const minutes = Math.floor(secondsLeft / 60);
-	// let seconds = secondsLeft % 60;
-	// if (seconds < 10) seconds = '0' + seconds;
-
 	const totalSeconds =
 		mode === 'work' ? settingsInfo.workMins * 60 : settingsInfo.breakMins * 60;
 	const percentage = Math.round((secondsLeft / totalSeconds) * 100);
@@ -90,9 +80,6 @@ const Timer = () => {
 	if (seconds < 10) {
 		seconds = '0' + seconds;
 	}
-
-	// const timerLabel = `${mode} session - ${minutes}:${seconds}`;
-	// document.title = timerLabel;
 
 	console.log('total', totalSeconds);
 	console.log('secondsleft', secondsLeft);
@@ -150,7 +137,7 @@ const Timer = () => {
 					</div>
 
 					<h1 className="pagetext" style={{ marginTop: 150 }}>
-						{mode} <br /> <br />
+						mode: {mode} <br /> <br />
 						{isPaused ? (
 							<Button
 								sx={{

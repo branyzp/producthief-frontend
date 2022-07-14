@@ -62,22 +62,25 @@ const Blog = ({ todoapi }: Props) => {
 				Active Focuses: {active} <br />
 				{message}
 				{total === 0 && (
-					<Button
-						component={Link}
-						to="/todo"
-						sx={{
-							':hover': {
-								bgcolor: 'black',
+					<>
+						<br />
+						<Button
+							component={Link}
+							to="/todo"
+							sx={{
+								':hover': {
+									bgcolor: 'rgba(255, 255, 255, 0.2)',
+									color: 'white',
+								},
+								backgroundColor: 'rgba(255, 255, 255, 0)',
 								color: 'white',
-							},
-							backgroundColor: 'white',
-							color: 'black',
-							fontFamily: 'Oxygen',
-						}}
-						variant="contained"
-					>
-						Add a Focus
-					</Button>
+								fontFamily: 'Oxygen',
+							}}
+							variant="contained"
+						>
+							Add a Focus
+						</Button>
+					</>
 				)}
 			</h1>
 			<div className="container">

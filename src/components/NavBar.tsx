@@ -17,7 +17,9 @@ interface Props {
 	focuslength: number;
 }
 const pages = ['ToDo', 'Tracker', 'Tells'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Github', 'Linkedin'];
+const linkedin = 'https://www.linkedin.com/in/branyzp/';
+const github = 'https://github.com/branyzp';
 
 const NavBar = ({ focuslength }: Props) => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -187,7 +189,7 @@ const NavBar = ({ focuslength }: Props) => {
 							Register
 						</Button>
 
-						<Tooltip title="Open settings">
+						<Tooltip title="Check out my profile!">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar
 									alt="Remy Sharp"
@@ -211,11 +213,16 @@ const NavBar = ({ focuslength }: Props) => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">{setting}</Typography>
-								</MenuItem>
-							))}
+							<MenuItem onClick={handleCloseUserMenu}>
+								<a href={github}>
+									<Typography textAlign="center">GitHub</Typography>
+								</a>
+							</MenuItem>
+							<MenuItem onClick={handleCloseUserMenu}>
+								<a href={linkedin}>
+									<Typography textAlign="center">Linkedin</Typography>
+								</a>
+							</MenuItem>
 						</Menu>
 					</Box>
 				</Toolbar>

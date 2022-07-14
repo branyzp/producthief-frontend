@@ -20,19 +20,8 @@ interface Props {
 
 export default function TellCard({ id, goal, steps, created_date }: Props) {
 	return (
-		<Card
-			className="TellCard"
-			sx={{ maxWidth: 500, maxHeight: 345, borderRadius: '25px' }}
-		>
-			<CardContent>
-				<Typography gutterBottom variant="h5" component="div">
-					<h1>
-						Goal:{goal} <br />
-						Steps:{steps} <br />
-						Created on:{created_date}
-					</h1>
-				</Typography>
-			</CardContent>
-		</Card>
+		<div>
+			<h1 className="pagetext">{goal}</h1>
+		</div>
 	);
 }
