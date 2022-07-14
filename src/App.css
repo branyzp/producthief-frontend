@@ -126,6 +126,8 @@ h1, h2, input, textarea, p{
   transform: scale(1.25);
   position: relative;
   z-index: 5;
+
+ 
 }
 
 .pagetext{
@@ -221,5 +223,12 @@ h1, h2, input, textarea, p{
 .todopage{
 
     
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
 }
 

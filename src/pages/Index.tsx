@@ -9,7 +9,7 @@ const Index = () => {
 				<h1 style={{ fontSize: 50 }} className="pagetext">
 					Hi. <br /> <br />
 					Welcome to Producthief. <br /> <br />
-					It's time to steal your life back.
+					Let's focus.
 				</h1>
 
 				<Button

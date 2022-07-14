@@ -147,7 +147,7 @@ const NavBar = ({ focuslength }: Props) => {
 							</Button>
 						))}
 					</Box>
-					<Box sx={{ flexGrow: 25 }}>
+					{/* <Box sx={{ flexGrow: 25 }}>
 						<Button
 							sx={{
 								my: 2,
@@ -158,7 +158,7 @@ const NavBar = ({ focuslength }: Props) => {
 						>
 							Total Focuses: {focuslength}
 						</Button>
-					</Box>
+					</Box> */}
 
 					<Box sx={{ flexGrow: 0 }}>
 						<Button
