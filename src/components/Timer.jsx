@@ -104,37 +104,114 @@ const Timer = () => {
 	} else if (isPaused) {
 		document.title = 'timer paused';
 	} else {
-		const timerLabel = `${mode} session - ${minutes}:${seconds}`;
+		const timerLabel = `${mode} - ${minutes}:${seconds}`;
 		document.title = timerLabel;
 	}
 
 	return (
 		<div className="timerdiv">
-			{/* <CircularProgressbar
-				value={percentage}
-				text={minutes + ':' + seconds}
-				strokeWidth={5}
-				styles={buildStyles({
-					strokeLinecap: 'butt',
-				})}
-			/> */}
-
 			<CircularProgressbarWithChildren
 				value={percentage}
 				text={minutes + ':' + seconds}
 				strokeWidth={5}
 				styles={buildStyles({
 					strokeLinecap: 'butt',
+					textColor: 'rgba(255, 255, 255, 0.8)',
+					trailColor: 'rgba(255, 255, 255, 0)',
+					pathColor: 'rgba(255, 255, 255, 0.6)',
 				})}
 			>
 				<div>
-					<h1 className="pagetext" style={{ marginTop: 200 }}>
-						{mode.tos} <br /> <br />
+					<div>
+						<label className="pagetext">
+							<b>Work (mins): {settingsInfo.workMins}</b>
+						</label>
+						<ReactSlider
+							className="slider"
+							thumbClassName="thumb"
+							trackClassName="track"
+							value={settingsInfo.workMins}
+							min={1}
+							max={120}
+							onChange={(newValue) => settingsInfo.setWorkMins(newValue)}
+						/>
+						<label className="pagetext">
+							<b>Break (mins): {settingsInfo.breakMins}</b>
+						</label>
+						<ReactSlider
+							className="slider"
+							thumbClassName="thumb"
+							trackClassName="track"
+							value={settingsInfo.breakMins}
+							min={1}
+							max={20}
+							onChange={(newValue) => settingsInfo.setBreakMins(newValue)}
+						/>
+					</div>
+
+					<h1 className="pagetext" style={{ marginTop: 150 }}>
+						{mode} <br /> <br />
+						{isPaused ? (
+							<Button
+								sx={{
+									':hover': {
+										bgcolor: 'black',
+										color: 'white',
+									},
+									backgroundColor: 'white',
+									color: 'black',
+									fontFamily: 'Oxygen',
+									marginRight: '20px',
+								}}
+								onClick={() => {
+									setIsPaused(false);
+									isPausedRef.current = false;
+								}}
+							>
+								<PlayCircleIcon />
+							</Button>
+						) : (
+							<Button
+								sx={{
+									':hover': {
+										bgcolor: 'black',
+										color: 'white',
+									},
+									backgroundColor: 'white',
+									color: 'black',
+									fontFamily: 'Oxygen',
+									marginRight: '20px',
+								}}
+								onClick={() => {
+									setIsPaused(true);
+									isPausedRef.current = true;
+								}}
+							>
+								<PauseCircleIcon />
+							</Button>
+						)}
+						<Button
+							sx={{
+								':hover': {
+									bgcolor: 'black',
+									color: 'white',
+								},
+								backgroundColor: 'white',
+								color: 'black',
+								fontFamily: 'Oxygen',
+							}}
+							onClick={() => {
+								secondsLeftRef.current = settingsInfo.workMins * 60;
+								setSecondsLeft(secondsLeftRef.current);
+							}}
+						>
+							<ReplayIcon />
+						</Button>
 					</h1>
 				</div>
 			</CircularProgressbarWithChildren>
 
-			<label>Work (mins): {settingsInfo.workMins}</label>
+			{/* <label className="pagetext">Work (mins): {settingsInfo.workMins}</label>
 			<ReactSlider
 				className="slider"
 				thumbClassName="thumb"
@@ -144,7 +221,7 @@ const Timer = () => {
 				max={120}
 				onChange={(newValue) => settingsInfo.setWorkMins(newValue)}
 			/>
-			<label>Break (mins): {settingsInfo.breakMins}</label>
+			<label className="pagetext">Break (mins): {settingsInfo.breakMins}</label>
 			<ReactSlider
 				className="slider"
 				thumbClassName="thumb"
@@ -153,10 +230,19 @@ const Timer = () => {
 				min={1}
 				max={20}
 				onChange={(newValue) => settingsInfo.setBreakMins(newValue)}
-			/>
+			/> */}
 
-			{isPaused ? (
+			{/* {isPaused ? (
 				<Button
+					sx={{
+						':hover': {
+							bgcolor: 'black',
+							color: 'white',
+						},
+						backgroundColor: 'white',
+						color: 'black',
+						fontFamily: 'Oxygen',
+					}}
 					onClick={() => {
 						setIsPaused(false);
 						isPausedRef.current = false;
@@ -166,6 +252,15 @@ const Timer = () => {
 				</Button>
 			) : (
 				<Button
+					sx={{
+						':hover': {
+							bgcolor: 'black',
+							color: 'white',
+						},
+						backgroundColor: 'white',
+						color: 'black',
+						fontFamily: 'Oxygen',
+					}}
 					onClick={() => {
 						setIsPaused(true);
 						isPausedRef.current = true;
@@ -176,13 +271,22 @@ const Timer = () => {
 			)}
 
 			<Button
+				sx={{
+					':hover': {
+						bgcolor: 'black',
+						color: 'white',
+					},
+					backgroundColor: 'white',
+					color: 'black',
+					fontFamily: 'Oxygen',
+				}}
 				onClick={() => {
 					secondsLeftRef.current = settingsInfo.workMins * 60;
 					setSecondsLeft(secondsLeftRef.current);
 				}}
 			>
 				<ReplayIcon />
-			</Button>
+			</Button> */}
 			<audio id="beep" src={bellSoundUrl} ref={audioRef} preload="auto" />
 		</div>
 	);

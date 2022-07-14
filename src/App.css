@@ -64,6 +64,9 @@ body{
   transition: 0.2s;
   box-shadow: inset 0 0 5px black;
   resize: none;
+  background: rgba(255, 255, 255, 0.5);
+  
+
 }
 
 
@@ -73,7 +76,7 @@ body{
   transition: 0.2s;
   box-shadow: inset 0 0 5px black; */
   
-  border-radius: 50px;
+  border-radius: 20px;
   padding: 10px 10px;
   font-size: 15px;
   border: none;
@@ -85,7 +88,7 @@ body{
 
 .input_box:focus,
 .editInput:focus{
-  
+  background: rgba(255, 255, 255, 0.8);
   outline: none;
 }
 
@@ -96,21 +99,24 @@ body{
   margin-right: 20px;
   margin-top: 40px;
   margin-bottom: 20px;
-  height: 300px;
-  width: 300px;
+  /* height: 300px;
+  width: 300px; */
+  height: fit-content;
   width: fit-content;
   block-size: fit-content;
+ 
+  
 }
 
 h1, h2, input, textarea, p{
   font-family: 'Dosis', sans-serif;
   font-weight: bolder;
+  white-space: pre-wrap;
 }
 
 
 .icon{
   width: 100px;
-  margin: 5px;
   border-radius: 40px;
 }
 
@@ -129,6 +135,12 @@ h1, h2, input, textarea, p{
   animation: fadeIn 2s;
 }
 
+.pagetext2 {
+  font-family: 'Oxygen', sans-serif;
+  color: white;
+  font-weight: bolder;
+}
+
 .pagetextdiv{
   text-align: center;
   width: 100%;
@@ -136,10 +148,7 @@ h1, h2, input, textarea, p{
 }
 
 .ToDoCardContainer{
-  background-image: url('https://images.unsplash.com/photo-1555505019-8c3f1c4aba5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
-  background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+  background: rgba(255, 255, 255, 0.2);
     margin-top: 10px;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -163,14 +172,23 @@ h1, h2, input, textarea, p{
 #clock{
   font-size: 40px;
 }
-
+.tellpage{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .newTellContainer{
-  background-color: rgb(244, 229, 234);
+  
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 50px;
-  width: 50%;
+  width: 30%;
   height: 50%;
+ 
+  display: inline-block;
+
+
 }
 
 .formContainer{
@@ -179,22 +197,24 @@ h1, h2, input, textarea, p{
 
 .slider{
   height: 40px;
-  border: 2px solid rgb(36, 51, 50);
+  border: 2px solid rgb(255, 255, 255);
   border-radius: 20px;
 }
 
 .thumb{
-  background-color: rgb(66, 51, 115);
+  background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   width: 40px;
   height: 40px;
   border-radius: 20px;
+  border: 1px solid black;
 }
 
 .timerdiv{
   margin-top: 20px;
   width: 35%;
   display: inline-block;
+  
 }
 
 
@@ -202,3 +222,4 @@ h1, h2, input, textarea, p{
 
     
 }
+
