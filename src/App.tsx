@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import SettingsContext from './components/SettingsContext';
-import Blog from './pages/Blog';
+import Tracker from './pages/Tracker';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -63,7 +63,7 @@ function App() {
 						<Route path="/todo" element={<ToDo todoapi={todoapi} />} />
 						<Route path="/todo/:id" element={<ToDoPage todoapi={todoapi} />} />
 						<Route path="/tells" element={<Tells tellsapi={tellsapi} />} />
-						<Route path="/blog" element={<Blog todoapi={todoapi} />} />
+						<Route path="/Tracker" element={<Tracker todoapi={todoapi} />} />
 					</Routes>
 				</BrowserRouter>
 			</SettingsContext.Provider>

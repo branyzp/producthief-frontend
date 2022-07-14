@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 interface Props {
 	focuslength: number;
 }
-const pages = ['ToDo', 'Blog', 'Tells'];
+const pages = ['ToDo', 'Tracker', 'Tells'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = ({ focuslength }: Props) => {

@@ -7,7 +7,7 @@ const Index = () => {
 		<div>
 			<>
 				<h1 style={{ fontSize: 50 }} className="pagetext">
-					Hi. <br /> <br />
+					<br />
 					Welcome to Producthief. <br /> <br />
 					Let's focus.
 				</h1>
@@ -31,7 +31,7 @@ const Index = () => {
 				</Button>
 				<Button
 					component={Link}
-					to="/blog"
+					to="/tracker"
 					sx={{
 						':hover': {
 							bgcolor: 'black',
@@ -44,7 +44,7 @@ const Index = () => {
 					}}
 					variant="contained"
 				>
-					Blog
+					Tracker
 				</Button>
 				<Button
 					component={Link}

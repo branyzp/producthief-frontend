@@ -11,15 +11,14 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-interface tell {}
-
 interface Props {
 	id: number;
 	goal: string;
 	steps: string;
+	created_date: string;
 }
 
-export default function TellCard({ id, goal, steps }: Props) {
+export default function TellCard({ id, goal, steps, created_date }: Props) {
 	return (
 		<Card
 			className="TellCard"
@@ -28,8 +27,9 @@ export default function TellCard({ id, goal, steps }: Props) {
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="div">
 					<h1>
-						{goal} <br />
-						{steps}
+						Goal:{goal} <br />
+						Steps:{steps} <br />
+						Created on:{created_date}
 					</h1>
 				</Typography>
 			</CardContent>

@@ -42,12 +42,12 @@ export default function ToDoPage({ todoapi }: Props) {
 				<Timer />
 			</div>
 			<div>
-				<h4 className="pagetext2">
-					Title: <span className="pagetext">{todo.title}</span>
-				</h4>
-				<h4 className="pagetext2">
-					Description: <span className="pagetext">{todo.description}</span>{' '}
-				</h4>
+				<h3 className="pagetext2">
+					<span className="pagetext">{todo.title}</span>
+				</h3>
+				<h3 className="pagetext2">
+					<span className="pagetext">{todo.description}</span>{' '}
+				</h3>
 
 				<Button
 					component={Link}

@@ -136,6 +136,7 @@ export default function ToDoCard({
 							className="editInput"
 							value={editDesc}
 							onChange={(e) => setEditDesc(e.target.value)}
+							rows={5}
 						/>
 					) : completed ? (
 						<h2>You're done! Yay!</h2>
@@ -146,15 +147,35 @@ export default function ToDoCard({
 
 				{completed ? (
 					<Tooltip title="Undo Complete">
-						<Button onClick={() => handleCompleted(id)}>
+						<Button
+							sx={{
+								':hover': {
+									bgcolor: 'rgba(255, 255, 255, 0.2)',
+									color: 'darkgrey',
+								},
+								backgroundColor: 'rgba(255, 255, 255, 0)',
+								color: 'black',
+								fontFamily: 'Oxygen',
+							}}
+							onClick={() => handleCompleted(id)}
+						>
 							<CheckIcon />
 						</Button>
 					</Tooltip>
 				) : edit ? (
 					<>
-						<h1>Editing {title} ... </h1>
+						<h1>Editing... </h1>
 						<Tooltip title="Undo Edit Mode">
 							<Button
+								sx={{
+									':hover': {
+										bgcolor: 'rgba(255, 255, 255, 0.2)',
+										color: 'darkgrey',
+									},
+									backgroundColor: 'rgba(255, 255, 255, 0)',
+									color: 'black',
+									fontFamily: 'Oxygen',
+								}}
 								onClick={() => {
 									if (!edit && !completed) {
 										setEdit(!edit);
@@ -174,6 +195,15 @@ export default function ToDoCard({
 					<>
 						<Tooltip title="Edit Focus">
 							<Button
+								sx={{
+									':hover': {
+										bgcolor: 'rgba(255, 255, 255, 0.2)',
+										color: 'darkgrey',
+									},
+									backgroundColor: 'rgba(255, 255, 255, 0)',
+									color: 'black',
+									fontFamily: 'Oxygen',
+								}}
 								onClick={() => {
 									if (!edit && !completed) {
 										setEdit(!edit);
@@ -190,20 +220,52 @@ export default function ToDoCard({
 						</Tooltip>
 
 						<Tooltip title="Delete Focus">
-							<Button onClick={() => handleDelete(id)}>
+							<Button
+								sx={{
+									':hover': {
+										bgcolor: 'rgba(255, 255, 255, 0.2)',
+										color: 'darkgrey',
+									},
+									backgroundColor: 'rgba(255, 255, 255, 0)',
+									color: 'black',
+									fontFamily: 'Oxygen',
+								}}
+								onClick={() => handleDelete(id)}
+							>
 								<DeleteIcon />
 							</Button>
 						</Tooltip>
 
 						<Link to={`${id}`}>
 							<Tooltip title="Pomodoro Timer">
-								<Button>
+								<Button
+									sx={{
+										':hover': {
+											bgcolor: 'rgba(255, 255, 255, 0.2)',
+											color: 'darkgrey',
+										},
+										backgroundColor: 'rgba(255, 255, 255, 0)',
+										color: 'black',
+										fontFamily: 'Oxygen',
+									}}
+								>
 									<AccessAlarmIcon />
 								</Button>
 							</Tooltip>
 						</Link>
 						<Tooltip title="Complete Focus">
-							<Button onClick={() => handleCompleted(id)}>
+							<Button
+								sx={{
+									':hover': {
+										bgcolor: 'rgba(255, 255, 255, 0.2)',
+										color: 'darkgrey',
+									},
+									backgroundColor: 'rgba(255, 255, 255, 0)',
+									color: 'black',
+									fontFamily: 'Oxygen',
+								}}
+								onClick={() => handleCompleted(id)}
+							>
 								<CheckIcon />
 							</Button>
 						</Tooltip>

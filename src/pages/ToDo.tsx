@@ -117,7 +117,7 @@ export default function ToDo({ todoapi }: Props) {
 					{time.toDateString()}
 				</h1>
 				<h1
-					style={{ fontSize: 200, marginBottom: -50, marginTop: -50 }}
+					style={{ fontSize: 180, marginBottom: -50, marginTop: -50 }}
 					className="pagetext"
 				>
 					{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -165,11 +165,11 @@ export default function ToDo({ todoapi }: Props) {
 			<Button
 				sx={{
 					':hover': {
-						bgcolor: 'black',
+						bgcolor: 'rgba(255, 255, 255, 0.2)',
 						color: 'white',
 					},
-					backgroundColor: 'white',
-					color: 'black',
+					backgroundColor: 'rgba(255, 255, 255, 0)',
+					color: 'white',
 					fontFamily: 'Oxygen',
 				}}
 				variant="contained"

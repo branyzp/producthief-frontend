@@ -1,7 +1,8 @@
+import { Button, Tooltip } from '@mui/material';
 import axios from 'axios';
-import { count } from 'console';
 import React, { useEffect, useState } from 'react';
-import ToDoCard from '../components/ToDoCard';
+import { Link } from 'react-router-dom';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
 interface Props {
 	todoapi: string;
@@ -60,6 +61,24 @@ const Blog = ({ todoapi }: Props) => {
 				Total Focuses: {total} <br />
 				Active Focuses: {active} <br />
 				{message}
+				{total === 0 && (
+					<Button
+						component={Link}
+						to="/todo"
+						sx={{
+							':hover': {
+								bgcolor: 'black',
+								color: 'white',
+							},
+							backgroundColor: 'white',
+							color: 'black',
+							fontFamily: 'Oxygen',
+						}}
+						variant="contained"
+					>
+						Add a Focus
+					</Button>
+				)}
 			</h1>
 			<div className="container">
 				<div className="uncompleteddiv">
@@ -68,7 +87,27 @@ const Blog = ({ todoapi }: Props) => {
 						{ongoing.map((ongoing) => {
 							return (
 								<li className="pagetext" style={{ listStyle: 'number' }}>
-									<h1>{ongoing.title}</h1>
+									<h1>
+										{ongoing.title}{' '}
+										<Button
+											sx={{
+												':hover': {
+													bgcolor: 'rgba(255, 255, 255, 0.2)',
+													color: 'white',
+												},
+												backgroundColor: 'rgba(255, 255, 255, 0)',
+												color: 'white',
+												fontFamily: 'Oxygen',
+											}}
+											variant="contained"
+											component={Link}
+											to={`/todo/${ongoing.id}`}
+										>
+											<Tooltip title="Pomodoro Timer">
+												<AccessAlarmIcon />
+											</Tooltip>
+										</Button>
+									</h1>
 								</li>
 							);
 						})}

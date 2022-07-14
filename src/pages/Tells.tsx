@@ -88,7 +88,14 @@ const Tells = ({ tellsapi }: Props) => {
 			<div>
 				<h1 className="pagetext">Your Tells</h1>
 				{tell.map((tell) => {
-					return <TellCard id={tell.id} goal={tell.goal} steps={tell.steps} />;
+					return (
+						<TellCard
+							id={tell.id}
+							goal={tell.goal}
+							steps={tell.steps}
+							created_date={tell.created_date}
+						/>
+					);
 				})}
 			</div>
 		</div>
