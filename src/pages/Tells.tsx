@@ -10,8 +10,6 @@ interface Props {
 interface tells {
 	id: number;
 	goal: string;
-	steps: string;
-	created_date: string;
 }
 
 const Tells = ({ tellsapi }: Props) => {
@@ -86,13 +84,14 @@ const Tells = ({ tellsapi }: Props) => {
 			</div>
 			<div>
 				<h1 className="pagetext">Your Tells</h1>
-				{tell.map((tell) => {
+				{tell.map((t) => {
 					return (
 						<TellCard
-							id={tell.id}
-							goal={tell.goal}
-							steps={tell.steps}
-							created_date={tell.created_date}
+							id={t.id}
+							goal={t.goal}
+							setTell={setTell}
+							tell={tell}
+							tellsapi={tellsapi}
 						/>
 					);
 				})}

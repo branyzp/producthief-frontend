@@ -1,7 +1,6 @@
 import { Button } from '@mui/material';
 import React, { useContext, useEffect, useRef } from 'react';
 import {
-	CircularProgressbar,
 	buildStyles,
 	CircularProgressbarWithChildren,
 } from 'react-circular-progressbar';
@@ -32,9 +31,9 @@ const Timer = () => {
 		setSecondsLeft(secondsLeftRef.current);
 	}
 
-	function initTimer() {
-		setSecondsLeft(settingsInfo.workMins * 60);
-	}
+	// function initTimer() {
+	// 	setSecondsLeft(settingsInfo.workMins * 60);
+	// }
 
 	useEffect(() => {
 		// initTimer();

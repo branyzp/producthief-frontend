@@ -11,17 +11,46 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+interface tells {
+	id: number;
+	goal: string;
+}
+
 interface Props {
 	id: number;
 	goal: string;
-	steps: string;
-	created_date: string;
+	setTell: React.Dispatch<React.SetStateAction<tells[]>>;
+	tell: tells[];
+	tellsapi: string;
 }
 
-export default function TellCard({ id, goal, steps, created_date }: Props) {
+export default function TellCard({ id, goal, tellsapi, setTell, tell }: Props) {
+	const handleDelete = (id: number) => {
+		axios.delete(tellsapi + id);
+		setTell(tell.filter((tells) => tells.id !== id));
+	};
+
 	return (
 		<div>
-			<h1 className="pagetext">{goal}</h1>
+			<h1 className="pagetext">
+				{goal}
+				<Tooltip title="Delete Tell">
+					<Button
+						sx={{
+							':hover': {
+								bgcolor: 'rgba(255, 255, 255, 0.2)',
+								color: 'white',
+							},
+							backgroundColor: 'rgba(255, 255, 255, 0)',
+							color: 'white',
+							fontFamily: 'Oxygen',
+						}}
+						onClick={() => handleDelete(id)}
+					>
+						<DeleteIcon />
+					</Button>
+				</Tooltip>
+			</h1>
 		</div>
 	);
 }
